@@ -30,6 +30,337 @@ $(document).ready(function(){
    
 });
 </script>
+	<style>
+
+		/************ General Wrap ************/
+
+		.body_wrap{
+			margin: 0 auto;
+			width:640px;
+		}
+
+		/************ End General Wrap ************/
+
+
+		/************ Exterior Nav Bar ************/
+		.logo{
+			margin: 0 auto;
+		}
+		.logo img{
+			width: 130px;
+		}
+		.ext_nav{
+			margin: 0 auto;
+		}
+		.nav_tables{
+			margin:0 auto;
+			padding:0;
+			display:inline-block;
+			width: 280px;
+		}
+		.nav_tables td{
+			margin:0 auto;
+			width:260px;
+			display:inline;
+		}
+
+		/************ End Exterior Nav Bar ************/
+
+		/************ Header Img and Internal Nav Bar ************/
+
+		.header img{
+			width:640px;
+		}
+
+		.internal_nav{
+			margin:0 auto;
+			padding: 0 20px;
+			display:inline-block;
+		}
+
+		/************ End Header Img and Internal Nav Bar ************/
+
+		/************ Introduction ************/
+
+		.text_wrap td{
+			width: 500px;
+		}
+		.text_wrap div{
+			margin: 0 auto;
+			width: 500px;
+		}
+
+		/************ Introduction ************/
+
+		/************ Seminar Schedule ************/
+
+		.two_col{
+			margin:0 auto;
+			padding: 0;
+			display:inline-block;
+		}
+		.seminars_text{
+			width: 100%;
+		}
+		.seminars_align{
+			text-align: left;
+		}
+		/************ End Seminar Schedule ************/
+
+		/************ Stories ************/
+
+		.stories_body{
+			margin:0 auto;
+			width:640px;
+			border-radius: 0 0 8px 8px;
+			-webkit-border-radius: 0 0 8px 8px;
+			-moz-border-radius: 0 0 8px 8px;
+		}
+		.strong_pad{
+			height:0%;
+		}
+		.sound_stories{
+			width: 90%;
+		}
+		.stories_cont{
+			width:48%;
+		}
+		.stories_text{
+			height: 200px;
+			width: 60%;
+		}
+		.feet{
+			height:20px;
+		}
+
+		/************ End Stories ************/
+
+		/************ Footer ************/
+
+		.footer{
+			width: 400px;
+		}
+
+		/************ End Footer ************/
+
+		/************ Processed Last ************/
+
+		.seminars_width{
+			width: 500px;
+		}
+
+		@media screen and (max-width: 960px){
+			.ext_nav{
+				margin: 0 auto;
+				width: 600px;
+			}
+			.seminars_width{
+				width: 80%;
+			}
+		}
+		@media screen and (max-width: 768px){
+
+		}
+		@media screen and (max-width: 600px){
+
+			/************ General ************/
+
+			.body_wrap{
+				width:100%;
+			}
+			.cat_header td{
+				text-align:center;
+			}
+
+			/************ End General ************/
+
+			/************ Stories ************/
+
+			.stories_body{
+				width:100%;
+				border-radius: 0;
+				-webkit-border-radius: 0;
+				-moz-border-radius: 0;
+			}
+			.strong_pad{
+				height:0%;
+			}
+			.stories_text{
+				width: 60%;
+			}
+			.stories_resp{
+				margin:20px 0;
+				width: 100%;
+			}
+			.stories_head{
+				height: 40px;
+			}
+			.stories_resp tr td{
+
+				width: 90%;
+			}
+			.stories_resp tr td table{
+				width: 80%;
+			}
+			.feet{
+				height: 0;
+			}
+
+			/************ End Stories ************/
+
+			/************ Exterior Nav Bar ************/
+
+			.ext_nav{
+				width: 80%;
+			}
+			.ext{
+				padding-top:16px;
+			}
+			.nav_left{
+				text-align: left;
+			}
+			.nav_right{
+				text-align: right;
+			}
+			.nav_tables{
+				width: 100%;
+				display: table;
+			}
+			.nav_tables td{
+				width: 100%;
+				text-align:center;
+				display:block;
+			}
+
+			/************ End Exterior Nav Bar ************/
+
+			/************ Header Img and Internal Nav Bar ************/
+
+			.header img{
+				width: 100%;
+			}
+			.internal_nav{
+				display: table;
+				border: 1px solid #000000;
+				width: 100%;
+			}
+			.internal_nav td{
+				max-width: 100%;
+				height:50px;
+				padding: 0 20px;
+			}
+
+			/************ End Header Img and Internal Nav Bar ************/
+
+			/************ Introduction ************/
+
+			.text_wrap{
+				margin: 0 auto;
+				width: 90%;
+			}
+			.text_wrap td{
+				width: 90%;
+				text-align:center;
+			}
+			.text_wrap div{
+				margin: 0 auto;
+				width: 90%;
+			}
+
+			/************ End Introduction ************/
+
+			/************ Seminars ************/
+
+			.two_col{
+				padding:0 20px;
+			}
+			.two_col td{
+				width: 100%;
+				height: 1.5em;
+			}
+			.two_col span{
+				font-size:1.25em;
+				line-height:1.5em;
+			}
+			.seminars_text{
+				padding: 20px;
+				width: 100%;
+			}
+			.seminars_align{
+				text-align: center;
+			}
+			.seminars_pad{
+				height:0px;
+			}
+			.seminars_width{
+				width: 100%;
+			}
+			/************ End Seminars ************/
+			/************ General (for later processing) ************/
+
+			.cat_header span{
+				font-size: 1.6em;
+				line-height:1.6em;
+				text-align:center;
+			}
+			.cat_weight{
+				font-weight: 600;
+			}
+			.division{
+				font-size: 1.6em;
+				line-height:1.6em;
+				text-align:center;
+			}
+			.division_bar{
+				height: 3.5em;
+			}
+			.body_type{
+				font-size: 1.4em;
+				line-height: 1.6em;
+			}
+			.tagline{
+				font-size: 1.25em;
+				line-height: 1.4em;
+			}
+			.description{
+				font-size: 1.25em;
+				line-height: 1.6em;
+			}
+			.product{
+				width: 90%;
+			}
+			.social_icon{
+				padding: 4px;
+				width: 45px;
+			}
+			.logo{
+				width: 150px;
+			}
+			/************ End General (for later processing) ************/
+		}
+
+		/*@media screen and (max-width:375px){
+			.body{
+				width:375px;
+			}
+			.body_wrap{
+				width: 375px;
+			}
+			.stories_body{
+				width:375px;
+			}
+			.header img{
+				width: 375px;
+			}
+			.intro_wrap{
+				width: 280px;
+			}
+			.footer{
+				width:300px;
+			}
+		}*/
+	</style>
+<!--
 <style>
 body {
 	font-size:11px;
@@ -50,14 +381,14 @@ body {
 .dark td {background-color:#EEF0F7;}
 .light td {background-color:#FFFFFF;}
 
-</style>
+</style>-->
 </head>
 
-<body style="font-size: 80%; background: #3a4e7f; font-family: arial, tahoma, verdana; color: #555656;">
+<body style="margin:0 auto;">
 <!--To view as HTML, <a href="http://www.meyersound.com/mail/seminars.html">click here</a>-->
 
 <center>
-	<table cellspacing="0" border="0" id="page" style="background-color: #f4f8fc; width: 508px;" cellpadding="0" width="100%">
+	<!--<table cellspacing="0" border="0" id="page" style="background-color: #f4f8fc; width: 508px;" cellpadding="0" width="100%">
 		<tr>
 			<td id="topnav" style="background: #3a4e7f; color: #FFFFFF; vertical-align: top;"><p class="left" style="margin: 5px 0px; float: left;"><a href="http://www.meyersound.com/index.php" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Home</a> | <a href="http://meyersound.com/events/seminars/calendar.php" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Seminar Dates</a> | <a href="http://meyersound.com/education/" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Education Program Info</a> | <a href="mailto:education@meyersound.com" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Email Us</a></p>
 
@@ -72,14 +403,60 @@ body {
 					</tr>
 					<tr>
 					    <td class="w497" style="padding: 0px 11px; vertical-align: top;">
-							<p class="right" style="margin: 5px 0px; float: right;"><span class="nolink" style="font-size: 10px; color: #3a4f80; text-decoration: none;">Upcoming Seminars</span> |<!-- <span class="nolink" style="font-size: 10px; color: #3a4f80; text-decoration: none;">Sound Solutions</span> |--> <span class="nolink" style="font-size: 10px; color: #3a4f80; text-decoration: none;">Product Updates</span> | <span class="nolink" style="font-size: 10px; color: #3a4f80; text-decoration: none;">Featured Sound Stories</span></p>						</td>
+							<p class="right" style="margin: 5px 0px; float: right;"><span class="nolink" style="font-size: 10px; color: #3a4f80; text-decoration: none;">Upcoming Seminars</span> | <span class="nolink" style="font-size: 10px; color: #3a4f80; text-decoration: none;">Product Updates</span> | <span class="nolink" style="font-size: 10px; color: #3a4f80; text-decoration: none;">Featured Sound Stories</span></p>						</td>
 					</tr>
 					<tr>
 						<td style="vertical-align: top;">
 							<p class="left" style="margin: 0px 0px; padding-left: 35px; float: left;"><img src="http://www.meyersound.com/mail/seminar_images/hr.gif" alt="" style="border: none;" /></p>
 							<p class="right" style="margin: 0px 0px; float: right;"><a href="http://twitter.com/MeyerSound" style="font-size: 10px; color: #3a4f80; text-decoration: none;"><img src="http://www.meyersound.com/mail/seminar_images/meyer-twitter.jpg" alt="Follow us on Twitter" style="border: none;" /></a></p>						</td>
 					</tr>
+				</table>-->
+	<table align="center" cellspacing="0" border="0" width="100%" style="margin:0 auto;padding:0;background-color:#eeeded;width:100%;" cellpadding="0">
+		<tr style="text-align:center;">
+			<td style="text-align:center;width:100%" align="center">
+				<table cellspacing="0" cellpadding="0" border="0" width="600" style="background-color:#eeeded;" class="ext_nav">
+					<tr>
+						<td colspan="2" height="20" style="line-height:21px;">
+							<div></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" style="/*background-color:green;*/">
+							<table cellpadding="0" cellspacing="0" border="0" width="300" class="nav_tables">
+								<tr>
+									<td colspan="1" style="/*background-color:green;*/" class="nav_left">
+										<a href="http://www.meyersound.com"><img style="box-shadow:1px;" width="130" class="logo" src="http://www.meyersound.com/email/email_redesign/sound_source/img/ms_logo_drkGrey.png" alt="Meyer Sound Logo" /></a>
+									</td>
+								</tr>
+							</table>
+							<table cellpadding="0" cellspacing="0" border="0" width="300" class="nav_tables ext">
+								<tr>
+									<td colspan="1" style="vertical-align:bottom;/*background-color:red;*/" class="nav_right">
+										<a href="http://www.meyersound.com/events/seminars/" target="_blank" style="font-family:Arial, sans-serif;font-weight:normal;font-size:16px;color:#222222;text-decoration:none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;">
+											<span class="body_type">Education</span>
+										</a>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="http://www.meyersound.com/events/seminars/courses.php" target="_blank" style="font-family:Arial, sans-serif;font-weight:normal;font-size:16px;color:#222222;text-decoration:none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;">
+											<span class="body_type">Seminars</span>
+										</a>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="mailto:gavinc@meyersound.com" style="font-family:Arial, sans-serif;font-weight:normal;font-size:16px;color:#222222;text-decoration:none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;">
+											<span class="body_type">Contact Us</span>
+										</a>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" height="20" style="line-height:21px;">
+							<div></div>
+						</td>
+					</tr>
 				</table>
+			</td>
+		</tr>
+	</table>
 <?php if(!$_REQUEST['_do']) : ?>       
         <a href="javascript: ;" id="selectAll">Select All</a>
 <?php endif ?>        
