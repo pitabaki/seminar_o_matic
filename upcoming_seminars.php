@@ -7,9 +7,12 @@ include("FX.php");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Seminar-o-matic</title>
-<script src="../jquery/jquery.js"></script>
+<script src="js/jquery.js"></script>
 <script language="javascript" type="text/javascript">
 $(document).ready(function(){
+
+
+//Click event for seminar's checkbox
   $('.seminarSelect').click(function(){
 		if($(this).attr("checked")) {
 			$(this).parent().addClass("selected");
@@ -18,12 +21,21 @@ $(document).ready(function(){
 		}
 	
 	});
-	
+
+//"Select All" Event Handler
 	$('#selectAll').click(function(){
-		$('.seminarSelect').each(function() {
-			$(this).parent().addClass("selected");
-			$(this).attr("checked", true);
-		})
+		//When "Select All" is clicked, do this
+		if(! $('.seminarSelect').parent(".selected").length){
+			$('.seminarSelect').each(function() {
+				$(this).parent().addClass("selected");
+				$(this).attr("checked", true);
+			})
+		}else{
+			$('.seminarSelect').each(function() {
+				$(this).parent().removeClass("selected");
+				$(this).attr("checked", false);
+			})
+		}//End "Select All"
 
 //		addClass("selected")
 	});
@@ -474,11 +486,16 @@ Seminars start here
 
 
 -->
-    
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="640" style="margin:0 auto;background-color:#222222;" class="body_wrap">   
     <tr>
-						<td class="w448" style="font-size: 11px; line-height: 22px; padding: 0px 35px; vertical-align: top;">
-							<p class="left" style="margin: 5px 0px; float: left;"><span class="mh2" style="font-size: 14px; font-weight: bold;">upcoming</span> <span class="mh2 blue" style="font-size: 14px; font-weight: bold; color: #3a4e7f;">seminars</span></p>						</td>
-					</tr>
+    	<td colspan="3" height="60" align="center"
+style="font-size:24px;" class="division_bar">
+<span style="font-family:Arial, sans-serif;font-weight:normal;color:#eeeded
+;text-align:center;-webkit-font-smoothing: antialiased;-moz-osx-font-
+smoothing: grayscale;" class="division">upcoming seminars</span>
+		</td>
+	</tr>
+</table>
           
 <?
 	if($_REQUEST['_do'] == 'process') {
@@ -736,15 +753,15 @@ function findSeminars($args = false, $webArgs = false) {
 			
 		}	
 		// close last row
-		$output .= '</table>
+		$output .= '		</table>
 						</td>
 					</tr>';
 	} // end if webinars	
 	if(!$args) {
 		$output .= '
-		<tr>
-			<td><input type="submit" value="submit">
-		</form>
+						<tr>
+					<td><input type="submit" value="submit">
+				</form>
 			</td>
 		</tr>';
 	}
