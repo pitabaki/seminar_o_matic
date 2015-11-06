@@ -56,19 +56,18 @@ $(document).ready(function(){
 			background-color: #f5f5f5;
 		}
 		.container{
-			position: fixed;
 			width: 100%;
 		}
 		#selectAll{
 			position: fixed;
 			margin-top: 10%;
-			margin-left: -100px;
+			margin-left: -105px;
 			padding: 10px;
 			font-family: Helvetica, sans-serif;
 			font-size: 19px;
 			width: 130px;
 			background-color: #e88b46;
-			color: #222222;
+			color: #000000;
 			text-decoration: none;
 			transition: all 0.5s ease;
 		}
@@ -433,7 +432,7 @@ body {
 	<div class="container">
 <!--To view as HTML, <a href="http://www.meyersound.com/mail/seminars.html">click here</a>-->
 <?php if(!$_REQUEST['_do']) : ?>       
-        <a href="javascript: ;" id="selectAll">Select All &nbsp;&nbsp;&nbsp;&larr;</a>
+        <a href="javascript: ;" id="selectAll">Select All &nbsp;&nbsp;&nbsp;&nbsp;&larr;</a>
 <?php endif ?>   
 <div>
 <center>
@@ -531,7 +530,15 @@ smoothing: grayscale;" class="division">upcoming seminars</span>
 		</td>
 	</tr>
 </table>
-          
+<table cellspacing="0" cellpadding="0" border="0" width="640" align="center" style="margin:0 auto;padding:0px;background-color:#f5f5f5;text-align:left;" class="stories_body">
+	<tr>
+		<td colspan="3">
+			<table id="seminars" cellspacing="0" cellpadding="0" border="0" width="500" align="center" style="margin:0 auto;padding:0px;background-image:URL('sources/region_NA.jpg');background-color:#f5f5f5;background-repeat:no-repeat;" class="sound_stories seminars_width">
+				<tr>
+					<td colspan="3" align="center" height="50" style="line-height:21px;">
+						<div></div>
+					</td>
+				</tr>         
 <?
 	if($_REQUEST['_do'] == 'process') {
 		$args = $_REQUEST['selectedSeminars'];
@@ -541,7 +548,23 @@ smoothing: grayscale;" class="division">upcoming seminars</span>
 		echo findSeminars();
 	}	
 ?>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" height="40" style="line-height:21px;">
+						<div></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" height="40" style="line-height:21px;">
 
+						<div></div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
 <!-- 
 
 
@@ -640,17 +663,16 @@ function findSeminars($args = false, $webArgs = false) {
 				}
 				// close previous section, make divider
 				$output .= '
-						</table>
 					</td>
 				</tr>
 				<tr>
-						<td class="w448" style="font-size: 11px; line-height: 22px; padding: 0px 35px; vertical-align: top;">
-							<p class="left" style="margin: 2px 0px; float: left;"><img src="http://www.meyersound.com/mail/seminar_images/short-hr.gif" alt="" style="border: none;" /></p>
-						</td>
+					<td colspan="3" align="center" height="40" style="line-height:21px;" class="seminars_pad">
+						<div></div>
+					</td>
 				</tr>';
 			}
 			
-			// open new seminar block
+			// open new seminar block (REPLACED)
 			$output .= '
 					<tr>
 						<td colspan="3">
@@ -669,14 +691,20 @@ function findSeminars($args = false, $webArgs = false) {
 						</td>
 					</tr>
 					<tr>
-						<td class="w448" style="font-size: 11px; line-height: 22px; padding: 0px 35px; vertical-align: top;">
-							<table cellspacing="0" border="0" cellpadding="0" width="100%">';
+						<td colspan="3" align="center" height="20" style="line-height:21px;">
+							<div></div>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" valign="top">';
 		}
 		
 		
 		//open a new row
 		if($col == 1) {
-			$output .= '<tr>';
+			$output .= '<table cellpadding="0" cellspacing="0" border="0" width="210" align="left" class="stories_cont">
+							<tr>
+								<td colspan="2" align="center">';
 		}
 		
 		// the meat of the seminars
@@ -684,23 +712,32 @@ function findSeminars($args = false, $webArgs = false) {
 		$regLink = (($data['Cvent_link'][0])?$data['Cvent_link'][0]:'http://www.meyersound.com/seminars/registration.php?id='.$id);
 		$language = '('.str_replace(array('(',')'),'',$data['web_language'][0]).')';
 		
-		$output .= '
-							<td style="vertical-align: top;">';
+		$output .= '<table cellpadding="0" cellspacing="0" border="0" class="seminars_text">';
 		if(!$args) {
 			$output .= '<input type="checkbox" name="selectedSeminars[]" class="seminarSelect" value="'.$id.'">';
 		}
 		$output .= '
-								<ul class="seminar" style="margin: 0px; list-style: none; line-height: normal; padding: 0px 0px 20px 0px; width: 224px;">
-									<li class="sloc" style="font-weight: bold; font-size: 12px; color: #555656;">
-										<a href="'.$regLink.'" style="font-size: 12px; font-weight: bold; color: #555656; text-decoration: none;">'.$data['venue::friendlyLocation'][0].'</a> 
-									</li>
-									<li class="sdate" style="font-size: 11px; color: #3a4e7f;">'.$data['friendlyDate'][0].'</li>
-									<li class="sinfo" style="font-size: 11px; width: 150px;">'.$data['seminarTopic::friendlyName'][0].' '.(($region != 'North America')?$language:'').'</li>
-								</ul> 
-							</td>';
+								<tr>
+									<td colspan="1" valign="top" style="font-size:18px;line-height:25px;" class="seminars_align">
+										<a href="'.$regLink.'" style="font-family:Arial,sans-serif;font-weight:normal;color:#5d6e83;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;text-decoration:none;" class="tagline">'.$data['venue::friendlyLocation'][0].'</a> 
+									</td>
+								</tr>
+								<tr>
+									<td colspan="1" valign="top" style="font-size:14px;line-height:21px;" class="seminars_align">
+										<span style="font-family:Arial, sans-serif;font-weight:normal;color:#0f4dbc;text-decoration:none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;" class="description">'.$data['friendlyDate'][0].'</span>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="1" valign="top" style="font-size:14px;line-height:21px;" class="seminars_align">
+										<span style="font-family:Arial, sans-serif;font-weight:normal;color:#51667c;text-decoration:none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;" class="description">'.$data['seminarTopic::friendlyName'][0].' '.(($region != 'North America')?$language:'').'</span>
+									</td>
+							</tr>
+						</table>';
 									
 		if($col == 2) {
-			$output .= '</tr>';
+			$output .= '	</td>
+						</tr>
+					</table>';
 		}
 		
 		$lastRegion = $region;
