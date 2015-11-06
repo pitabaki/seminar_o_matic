@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 
 //Click event for seminar's checkbox
-  $('.seminarSelect').click(function(){
+ 	$('.seminarSelect').click(function(){
 		if($(this).attr("checked")) {
 			$(this).parent().addClass("selected");
 		} else {
@@ -27,22 +27,55 @@ $(document).ready(function(){
 		//When "Select All" is clicked, do this
 		if(! $('.seminarSelect').parent(".selected").length){
 			$('.seminarSelect').each(function() {
+
+				//add class("selected")
+
 				$(this).parent().addClass("selected");
 				$(this).attr("checked", true);
 			})
 		}else{
 			$('.seminarSelect').each(function() {
+
+				//remove class ("selected")
+				
 				$(this).parent().removeClass("selected");
 				$(this).attr("checked", false);
 			})
 		}//End "Select All"
-
-//		addClass("selected")
 	});
    
 });
 </script>
 	<style>
+		/************ Doesn't Get Copied ************/
+		center{
+			background-color: #558ac8;
+		}
+		form{
+			width: 640px;
+			background-color: #f5f5f5;
+		}
+		.container{
+			position: fixed;
+			width: 100%;
+		}
+		#selectAll{
+			position: fixed;
+			margin-top: 10%;
+			margin-left: -100px;
+			padding: 10px;
+			font-family: Helvetica, sans-serif;
+			font-size: 19px;
+			width: 130px;
+			background-color: #e88b46;
+			color: #222222;
+			text-decoration: none;
+			transition: all 0.5s ease;
+		}
+		#selectAll:hover{
+			background-color: #b71849;
+			margin-left: 0;
+		}
 
 		/************ General Wrap ************/
 
@@ -397,9 +430,14 @@ body {
 </head>
 
 <body style="margin:0 auto;">
+	<div class="container">
 <!--To view as HTML, <a href="http://www.meyersound.com/mail/seminars.html">click here</a>-->
-
+<?php if(!$_REQUEST['_do']) : ?>       
+        <a href="javascript: ;" id="selectAll">Select All &nbsp;&nbsp;&nbsp;&larr;</a>
+<?php endif ?>   
+<div>
 <center>
+
 	<!--<table cellspacing="0" border="0" id="page" style="background-color: #f4f8fc; width: 508px;" cellpadding="0" width="100%">
 		<tr>
 			<td id="topnav" style="background: #3a4e7f; color: #FFFFFF; vertical-align: top;"><p class="left" style="margin: 5px 0px; float: left;"><a href="http://www.meyersound.com/index.php" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Home</a> | <a href="http://meyersound.com/events/seminars/calendar.php" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Seminar Dates</a> | <a href="http://meyersound.com/education/" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Education Program Info</a> | <a href="mailto:education@meyersound.com" style="font-size: 10px; text-transform: uppercase; color: #FFFFFF; text-decoration: none;">Email Us</a></p>
@@ -468,10 +506,7 @@ body {
 				</table>
 			</td>
 		</tr>
-	</table>
-<?php if(!$_REQUEST['_do']) : ?>       
-        <a href="javascript: ;" id="selectAll">Select All</a>
-<?php endif ?>        
+	</table>     
 			</td>
 		</tr>
 <!-- 
@@ -617,11 +652,21 @@ function findSeminars($args = false, $webArgs = false) {
 			
 			// open new seminar block
 			$output .= '
-					
 					<tr>
-						<td class="w448" style="font-size: 11px; line-height: 22px; padding: 0px 35px; vertical-align: top;">
-
-							<p class="left" style="margin: 5px 0px; float: left;"><span class="mh1 blue normal" style="font-size: 14px; font-weight: normal; color: #3a4e7f;">'.$region.'</span></p>						</td>
+						<td colspan="3">
+							<table cellspacing="0" cellpadding="0" border="0" class="text_wrap">
+								<tr>
+									<td colspan="1" style="font-size:20px;line-height:28px;" class="cat_header">
+										<span style="font-family:Arial,sans-serif;font-weight:bold;color:#558ac8;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale;">'.$region.'</span>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" align="center" height="20" style="line-height:21px;">
+							<div style="border-top:1px solid #558ac8;" id="seminars_underline"></div>
+						</td>
 					</tr>
 					<tr>
 						<td class="w448" style="font-size: 11px; line-height: 22px; padding: 0px 35px; vertical-align: top;">
@@ -648,8 +693,6 @@ function findSeminars($args = false, $webArgs = false) {
 								<ul class="seminar" style="margin: 0px; list-style: none; line-height: normal; padding: 0px 0px 20px 0px; width: 224px;">
 									<li class="sloc" style="font-weight: bold; font-size: 12px; color: #555656;">
 										<a href="'.$regLink.'" style="font-size: 12px; font-weight: bold; color: #555656; text-decoration: none;">'.$data['venue::friendlyLocation'][0].'</a> 
-										<a href="'.$regLink.'" style="font-size: 12px; font-weight: bold; color: #555656; text-decoration: none;">
-										<img src="http://www.meyersound.com/mail/seminar_images/arrow.gif" alt="arrow" style="border: none;" /></a>
 									</li>
 									<li class="sdate" style="font-size: 11px; color: #3a4e7f;">'.$data['friendlyDate'][0].'</li>
 									<li class="sinfo" style="font-size: 11px; width: 150px;">'.$data['seminarTopic::friendlyName'][0].' '.(($region != 'North America')?$language:'').'</li>
