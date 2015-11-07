@@ -62,17 +62,16 @@ $(document).ready(function(){
 			position: fixed;
 			margin-top: 10%;
 			margin-left: -105px;
-			padding: 10px;
+			padding: 20px 10px;
 			font-family: Helvetica, sans-serif;
 			font-size: 19px;
 			width: 130px;
-			background-color: #e88b46;
+			background-color: #f4d422;
 			color: #000000;
 			text-decoration: none;
-			transition: all 0.5s ease;
+			transition: margin 0.5s ease;
 		}
 		#selectAll:hover{
-			background-color: #b71849;
 			margin-left: 0;
 		}
 
@@ -533,12 +532,7 @@ smoothing: grayscale;" class="division">upcoming seminars</span>
 <table cellspacing="0" cellpadding="0" border="0" width="640" align="center" style="margin:0 auto;padding:0px;background-color:#f5f5f5;text-align:left;" class="stories_body">
 	<tr>
 		<td colspan="3">
-			<table id="seminars" cellspacing="0" cellpadding="0" border="0" width="500" align="center" style="margin:0 auto;padding:0px;background-image:URL('sources/region_NA.jpg');background-color:#f5f5f5;background-repeat:no-repeat;" class="sound_stories seminars_width">
-				<tr>
-					<td colspan="3" align="center" height="50" style="line-height:21px;">
-						<div></div>
-					</td>
-				</tr>         
+			<table id="seminars" cellspacing="0" cellpadding="0" border="0" width="500" align="center" style="margin:0 auto;padding:0px;background-image:URL('sources/region_NA.jpg');background-color:#f5f5f5;background-repeat:no-repeat;" class="sound_stories seminars_width">      
 <?
 	if($_REQUEST['_do'] == 'process') {
 		$args = $_REQUEST['selectedSeminars'];
@@ -649,31 +643,15 @@ function findSeminars($args = false, $webArgs = false) {
 	foreach($calendar as $recID => $data) {
 		// 2 column design.  This $col keeps track of which column we are on, so we can know when to open/close table rows
 		$col = (($col == 1)?2:1);
-	
 		$region = $data['venue::territory'][0];
-		
-		// split things up by region
-		if(!$region || $region != $lastRegion) {
-			// different case for the first row
-			if($lastRegion) {
-				// if row was unfinished, finish it
-				if($col == 2) {
-					$output .= '<td>&nbsp;</td></tr>';
-					$col = 1;
-				}
-				// close previous section, make divider
-				$output .= '
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3" align="center" height="40" style="line-height:21px;" class="seminars_pad">
-						<div></div>
-					</td>
-				</tr>';
-			}
-			
-			// open new seminar block (REPLACED)
-			$output .= '
+
+		//HTML Output Variables
+		$regionHTML = '
+					<tr>
+						<td colspan="3" align="center" height="50" style="line-height:21px;">
+							<div></div>
+						</td>
+					</tr>
 					<tr>
 						<td colspan="3">
 							<table cellspacing="0" cellpadding="0" border="0" class="text_wrap">
@@ -697,28 +675,47 @@ function findSeminars($args = false, $webArgs = false) {
 					</tr>
 					<tr>
 						<td align="center" valign="top">';
+		$padding = 	'<tr><td colspan="3" align="center" height="40" style="line-height:21px;" class="seminars_pad"><div></div></td></tr>';
+		$leftCol = '<tr><td align="center" valign="top"><table cellpadding="0" cellspacing="0" border="0" width="210" align="left" class="stories_cont">' . '<tr><td colspan="2" align="center">';
+		$rightCol = '<table cellpadding="0" cellspacing="0" border="0" width="210" align="right" class="stories_cont"><tr><td colspan="2" align="center">';
+		$openSem = '<table cellpadding="0" cellspacing="0" border="0" class="seminars_text"><tr><td colspan="1" valign="top" style="font-size:18px;line-height:25px;" class="seminars_align">';
+
+		// split things up by region
+		if(!$region || $region != $lastRegion) {
+			// different case for the first row
+			if($lastRegion) {
+				// if row was unfinished, finish it
+				if($col == 2) {
+					$output .= '<td>&nbsp;</td></tr>';
+					$col = 1;
+				}
+				// close previous section, make divider
+				$output .= '
+					</td>
+				</tr>';
+			}
+			
+			// open new seminar block (REPLACED)
+			$output .= $regionHTML;
 		}
 		
 		
 		//open a new row
 		if($col == 1) {
-			$output .= '<table cellpadding="0" cellspacing="0" border="0" width="210" align="left" class="stories_cont">
-							<tr>
-								<td colspan="2" align="center">';
+			$output .= $leftCol;
 		}
-		
+		if($col == 2) {
+			$output .= $rightCol;
+		}
 		// the meat of the seminars
 		$id = $data['KEY'][0];
 		$regLink = (($data['Cvent_link'][0])?$data['Cvent_link'][0]:'http://www.meyersound.com/seminars/registration.php?id='.$id);
 		$language = '('.str_replace(array('(',')'),'',$data['web_language'][0]).')';
-		
-		$output .= '<table cellpadding="0" cellspacing="0" border="0" class="seminars_text">';
+		$output .= $openSem;
 		if(!$args) {
 			$output .= '<input type="checkbox" name="selectedSeminars[]" class="seminarSelect" value="'.$id.'">';
 		}
 		$output .= '
-								<tr>
-									<td colspan="1" valign="top" style="font-size:18px;line-height:25px;" class="seminars_align">
 										<a href="'.$regLink.'" style="font-family:Arial,sans-serif;font-weight:normal;color:#5d6e83;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;text-decoration:none;" class="tagline">'.$data['venue::friendlyLocation'][0].'</a> 
 									</td>
 								</tr>
@@ -731,24 +728,23 @@ function findSeminars($args = false, $webArgs = false) {
 									<td colspan="1" valign="top" style="font-size:14px;line-height:21px;" class="seminars_align">
 										<span style="font-family:Arial, sans-serif;font-weight:normal;color:#51667c;text-decoration:none;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;" class="description">'.$data['seminarTopic::friendlyName'][0].' '.(($region != 'North America')?$language:'').'</span>
 									</td>
-							</tr>
-						</table>';
-									
-		if($col == 2) {
-			$output .= '	</td>
-						</tr>
-					</table>';
-		}
-		
-		$lastRegion = $region;
-		
-	}	
-	
-	// close last region:
-	$output .= '
+								</tr>
 						</table>
 					</td>
-				</tr>';
+				</tr>
+			</table>';
+		if($col == 2){
+			$output .= '</td></tr>' .$padding;
+		}			
+		$lastRegion = $region;
+		
+	}// End Foreach Loop	
+	
+	// close last region:
+	//$output .= '
+				//		</table>
+			//		</td>
+			//	</tr>';
 	// open new divider if there are webinars	to display
 	if($webinars) {
 		$output .= '
